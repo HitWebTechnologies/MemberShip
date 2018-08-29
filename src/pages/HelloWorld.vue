@@ -1,5 +1,5 @@
 <template>
-  <div class="border-t-4 border-green">
+  <div class="">
     <!-- The app navigatioinn bar -->
     <div class="bg-black border-b">
       <div class="container mx-auto flex justify-between items-center ">
