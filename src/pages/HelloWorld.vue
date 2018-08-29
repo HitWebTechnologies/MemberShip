@@ -15,11 +15,11 @@
           </a>
 
           <a href="#" class="flex items-center p-4 no-underline text-white hover:bg-grey-darkest rounded">
-          <div class="w-8 h-8 rounded-full bg-green-light mr-2">&nbsp;</div>
-          <span>Kudakwashe Paradzayi</span>
-        </a>
+            <div class="w-8 h-8 rounded-full bg-green-light mr-2">&nbsp;</div>
+            <span>Kudakwashe Paradzayi</span>
+          </a>
+        </div>
       </div>
-    </div>
     </div>
 
     <!-- A secondary nav bar -->
@@ -32,10 +32,7 @@
     </div>
 
     <!-- where the main app routes will be mounted -->
-    <div class="h-screen flex items-center justify-center">
-      <span class="mr-4">A very basic setup of <a href="https://vuejs.org" class="text-green">vue</a> with <a href="https://tailwindcss.com" class="text-green">tailwind</a>.</span>
-      <button class="py-4 px-6 bg-green text-white shadow-lg rounded" @click="$router.push('/register')">Proceed to registration</button>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
