@@ -9,7 +9,12 @@
             <span class="border-2 border-green py-1 px-2 rounded-r m-0">WebTech</span> 
         </a>
 
-        <a href="#" class="flex items-center p-4 no-underline text-white hover:bg-green-lightest">
+        <div class="flex items-center">
+          <a href="#" @click="$router.push('/constitution')" class="border-b-2 border-transparent p-4 no-underline text-white hover:bg-grey-darkest rounded">
+            Constitution
+          </a>
+
+          <a href="#" class="flex items-center p-4 no-underline text-white hover:bg-grey-darkest rounded">
           <div class="w-8 h-8 rounded-full bg-green-light mr-2">&nbsp;</div>
           <span>Kudakwashe Paradzayi</span>
         </a>
