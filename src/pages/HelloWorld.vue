@@ -15,8 +15,8 @@
           </a>
 
           <a href="#" class="flex items-center p-4 no-underline text-white hover:bg-grey-darkest rounded">
-            <div class="w-8 h-8 rounded-full bg-green-light mr-2">&nbsp;</div>
-            <span>Kudakwashe Paradzayi</span>
+            <div class="w-6 h-6 rounded-full bg-green-light mr-2">&nbsp;</div>
+            <span>Kudakwashe</span>
           </a>
         </div>
       </div>
