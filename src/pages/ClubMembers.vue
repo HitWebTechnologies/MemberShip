@@ -1,12 +1,12 @@
 <template>
   <div class="container mx-auto pt-8">
     <h3 class="font-medium mb-4">Club members <span class="bg-green rounded-full px-4 text-white">7</span></h3>
-    <div class="bg-white rounded overflow-hidden shadow-md mb-4">
+    <div class="bg-white rounded overflow-hidden shadow mb-4">
       <table class="w-full min-w-full rounded">
         <thead>
-          <th class="p-4 bg-grey-lighter border-b border-grey-light text-left font-medium">Name</th>
-          <th class="p-4 bg-grey-lighter border-b border-grey-light text-left font-medium">Program & Year</th>
-          <th class="p-4 bg-grey-lighter border-b border-grey-light text-left font-medium">Twitter Handle</th>
+          <th class="p-4 bg-white border-b border-grey text-left font-medium">Name</th>
+          <th class="p-4 bg-white border-b border-grey text-left font-medium">Program & Year</th>
+          <th class="p-4 bg-white border-b border-grey text-left font-medium">Twitter Handle</th>
         </thead>
         <tbody>
           <tr v-for="n in 7" :key="n">

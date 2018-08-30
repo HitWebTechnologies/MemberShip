@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <section class="container mx-auto p-6 mt-6 bg-white shadow rounded">
+  <div class="container mx-auto pt-8">
+    <h3 class="font-medium mb-4">Welcome</h3>
+    <section class="p-6 bg-white shadow rounded">
       <p>You are officially a <strong>HIT Web Technology club</strong> member.</p>
       <p>We will add more features to this website together.</p>
       <p> Its going to be fun :) </p>
