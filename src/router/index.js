@@ -5,6 +5,7 @@ import RegisterAccount from '@/pages/RegisterAccount'
 import RegisterAccountLogin from '@/pages/RegisterAccountLogin'
 
 import Home from '@/pages/Home'
+import ClubMembers from '@/pages/ClubMembers'
 import Constitution from '@/pages/Constitution'
 
 Vue.use(Router)
@@ -21,6 +22,11 @@ export default new Router({
           path: '',
           name: 'Home',
           component: Home
+        },
+        {
+          path: '/members',
+          name: 'ClubMembers',
+          component: ClubMembers
         },
         {
           path: '/constitution',
