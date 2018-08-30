@@ -56,7 +56,7 @@
           </div>
         </div>
 
-        <button class="block w-64 py-4 px-6 bg-green text-white shadow-md hover:shadow-lg rounded">Create my account</button>
+        <button @click="$router.push('/register-login')" class="block w-64 py-4 px-6 bg-green text-white shadow-md hover:shadow-lg rounded">Create my account</button>
 
       </div>
 
