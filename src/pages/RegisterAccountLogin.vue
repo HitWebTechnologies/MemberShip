@@ -14,17 +14,17 @@
         <div>
           <div class="mb-6">
             <label for="username" class="block mb-2 font-medium">Enter your username</label>      
-            <input id="username" name="username" type="text" class="w-full bg-grey-lightest p-3 rounded border-2 border-green-lightest" placeholder="JohnDoe">
+            <input id="username" name="username" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="JohnDoe">
           </div>
 
           <div class="mb-6">
             <label for="password" class="block mb-2 font-medium">Enter your password</label>      
-            <input id="password" name="password" type="text" class="w-full bg-grey-lightest p-3 rounded border-2 border-green-lightest" placeholder="***">
+            <input id="password" name="password" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
           </div>
 
           <div class="mb-6">
             <label for="confirmPassword" class="block mb-2 font-medium">Confirm your password</label>      
-            <input id="confirmPassword" name="confirmPassword" type="text" class="w-full bg-grey-lightest p-3 rounded border-2 border-green-lightest" placeholder="***">
+            <input id="confirmPassword" name="confirmPassword" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
           </div>
 
           <button class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">Create my account</button>

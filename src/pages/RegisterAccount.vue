@@ -9,13 +9,13 @@
           <!-- Full name -->
           <div class="w-3/5 mr-4">
             <label for="name" class="block mb-2 font-medium">Enter your full name</label>      
-            <input id="name" name="name" type="text" class="w-full bg-grey-lightest p-3 rounded border-2 border-green-lightest" placeholder="John Doe">
+            <input id="name" name="name" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="John Doe">
           </div>
 
           <!-- Reg number -->
           <div class="flex-1">
             <label for="regNumber" class="block mb-2 font-medium">Enter Reg Number</label>
-            <input id="regNumber" name="regNumber" type="text" class="w-full bg-grey-lightest p-3 rounded border-2 border-green-lightest" placeholder="H181234A">
+            <input id="regNumber" name="regNumber" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="H181234A">
           </div>
         </div>
 
@@ -23,13 +23,13 @@
           <!-- Reg number -->
           <div class="flex-1 mr-4">
             <label for="phoneNumber" class="block mb-2 font-medium">Enter Phone Number</label>
-            <input id="phoneNumber" name="phoneNumber" type="text" class="w-full bg-grey-lightest p-3 rounded border-2 border-green-lightest" placeholder="0717123456">
+            <input id="phoneNumber" name="phoneNumber" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="0717123456">
           </div>
 
           <!-- email -->
           <div class="flex-1">
             <label for="email" class="block mb-2 font-medium">Enter Email Address</label>
-            <input id="email" name="email" type="email" class="w-full bg-grey-lightest p-3 rounded border-2 border-green-lightest" placeholder="john.doe@email.com">
+            <input id="email" name="email" type="email" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="john.doe@email.com">
           </div>
         </div>
 
@@ -37,7 +37,7 @@
           <!-- Year -->
           <div class="flex-1 mr-4">
             <label for="year" class="block mb-2 font-medium">Enter Year</label>
-            <select id="year" name="year" type="text" class="w-full bg-grey-lightest p-3 rounded border-2 border-green-lightest" placeholder="H181234A">
+            <select id="year" name="year" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="H181234A">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -47,7 +47,7 @@
 
           <div class="flex-1">
             <label for="year" class="block mb-2 font-medium">What program?</label>
-            <select id="year" name="year" type="text" class="w-full bg-grey-lightest p-3 rounded border-2 border-green-lightest" placeholder="H181234A">
+            <select id="year" name="year" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="H181234A">
               <option value="1">Software Engineering</option>
               <option value="2">IT</option>
               <option value="3">CompScience</option>
@@ -58,7 +58,7 @@
 
         <div class="mb-6">
           <label for="twitter" class="block mb-2 font-medium">Twitter</label>
-          <input id="twitter" name="twitter" type="text" class="w-full bg-grey-lightest p-3 rounded border-2 border-green-lightest" placeholder="@kudapara">
+          <input id="twitter" name="twitter" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="@kudapara">
         </div>
         <button @click="$router.push('/register-login')" class="block w-full py-4 px-6 bg-green text-white shadow-md- hover:bg-green-dark rounded">Create my account</button>
 
