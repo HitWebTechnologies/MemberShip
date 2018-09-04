@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <!-- The app navigatioinn bar -->
-    <div class="bg-black border-b">
+    <div class="bg-purple border-b">
       <div class="container mx-auto flex justify-between items-center ">
         <a href="#" @click="$router.push('/')" class="flex justify-center py-4 no-underline text-white">
           <!-- A fancy makeshift icon. Replace with actual icon you will design -->
