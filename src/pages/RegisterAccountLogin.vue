@@ -2,6 +2,15 @@
   <div class="border-t-4 border-green h-screen flex justify-center items-center">
     <div class="container mx-auto py-8">
       <div class="form-area mx-auto lflex bg-white p-6 rounded">
+      
+      <div class="bg-orange-lightest -mx-6 -mt-6 p-6 mb-4 flex items-center justify-between" v-if="error.show">
+        <div class="text-orange-dark">
+          <h3 class="mb-2 font-medium">Error</h3>
+          <span>{{ this.error.text }}</span>
+        </div>
+        <button @click="clearError" class="bg-white text-orange-dark h-10 w-10 rounded shadow">X</button>
+      </div>
+      
       <h3 class="mb-6 pb-4 font-light text-2xl border-b">Signup the way you want</h3>
         <!-- social Signup
         comment it out. we dont need it yet.
@@ -14,20 +23,20 @@
         <div>
           <div class="mb-6">
             <label for="username" class="block mb-2 font-medium">Enter your username</label>      
-            <input id="username" name="username" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="JohnDoe">
+            <input v-model="account.username" id="username" name="username" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="JohnDoe">
           </div>
 
           <div class="mb-6">
             <label for="password" class="block mb-2 font-medium">Enter your password</label>      
-            <input id="password" name="password" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
+            <input v-model="account.password" id="password" name="password" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
           </div>
 
           <div class="mb-6">
             <label for="confirmPassword" class="block mb-2 font-medium">Confirm your password</label>      
-            <input id="confirmPassword" name="confirmPassword" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
+            <input v-model="confirmPassword" id="confirmPassword" name="confirmPassword" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
           </div>
 
-          <button class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">Create my account</button>
+          <button @click="registerAccountLogin" class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">Create my account</button>
         </div>
 
       </div>
@@ -36,8 +45,58 @@
 </template>
 
 <script>
-export default {
+import axios from '@/libraries/axios'
+import { b64DecodeUnicode } from '@/libraries/utils'
 
+export default {
+  mounted () {
+    this.userId = b64DecodeUnicode(this.$route.query.ssid)
+  },
+  data () {
+    return {
+      account: {
+        username: '',
+        password: ''
+      },
+      confirmPassword: '',
+      userId: '',
+
+      error: {
+        show: false,
+        text: ''
+      }
+    }
+  },
+  methods: {
+    registerAccountLogin () {
+      if (this.account.password !== this.confirmPassword) {
+        // throw an error and return
+        this.error.show = true
+        this.error.text = 'Please enter matching passwords'
+        return
+      }
+      axios.post(`/register-login/${this.userId}`, {
+        ...this.account
+      })
+        .then(res => {
+          console.log(res.data)
+          this.$router.push('/')
+        })
+        .catch(err => {
+          console.log(err)
+          this.error.show = true
+          if (err.response.status == 400) {
+            return this.error.text =  'The verification link provided is invalid. Please go back to your inbox and follow the link that was sent to you.'
+          }
+          this.error.text = err.response.data.message
+        })
+    },
+
+    clearError () {
+      this.error.show = false
+      this.error.text = ''
+    }
+  }
 }
 </script>
 
