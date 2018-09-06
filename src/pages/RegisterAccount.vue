@@ -29,7 +29,12 @@
           <!-- email -->
           <div class="flex-1">
             <label for="email" class="block mb-2 font-medium">Enter Email Address</label>
-            <input v-model="account.emailAddress" id="email" name="email" type="email" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="john.doe@email.com">
+            <div class="flex">
+              <input v-model="account.regNumber" id="email" name="email" type="email" class="w-full bg-grey-lightest p-3 rounded-l border-2 border-r-0 border-grey-light" placeholder="" readonly>
+              <div class="p-3 bg-grey-light border-2 border-l-0 rounded-r">
+                @hit.ac.zw
+              </div>
+            </div>
           </div>
         </div>
 
@@ -59,7 +64,10 @@
           <label for="twitter" class="block mb-2 font-medium">Twitter</label>
           <input v-model="account.twitterHandle" id="twitter" name="twitter" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="@kudapara">
         </div>
-        <button @click="registerAccount()" class="block w-full py-4 px-6 bg-green text-white shadow-md- hover:bg-green-dark rounded">Create my account</button>
+        <button @click="registerAccount()" :disabled="registrationInProgress" class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">
+          <span v-if="!registrationInProgress">Create my account</span>
+          <span v-else>Creating ...</span>
+        </button>
 
       </div>
 
@@ -69,6 +77,8 @@
 
 <script>
 import axios from '@/libraries/axios'
+import { b64EncodeUnicode } from '../libraries/utils'
+
 export default {
   data () {
     return {
@@ -87,20 +97,31 @@ export default {
         { code: 'ICS', title: 'Computer Science' },
         { code: 'ISA', title: 'Information Security And Assuarance' },
         { code: 'IIT', title: 'Information Technology'}
-      ]
+      ],
+
+      registrationInProgress: false
     }
   },
   methods: {
     registerAccount () {
+      this.registrationInProgress = true
+      this.account.emailAddress = this.account.regNumber + '@hit.ac.zw'
       axios.post('/register', {
         ...this.account
       })
         .then(res => {
           console.log(res.data)
-          this.$router.push('/register-login')
+          let userId = b64EncodeUnicode(res.data.user._id)
+          this.$router.push({
+            path: '/register-login',
+            query: {
+              ssid: userId
+            }
+          })
         })
         .catch(err => {
-          console.log(err)
+          console.log(JSON.stringify(err))
+          this.registrationInProgress = false
         })
     }
   }
