@@ -25,7 +25,7 @@
     <!-- A secondary nav bar -->
     <div class="bg-white- bg-grey-lightest border-b">
       <div class="flex container mx-auto">
-        <a href="#" @click="$router.push('/')" :class="{'border-green': $route.name === 'Home'}" class="border-b-2 border-transparent p-4 no-underline text-grey-darkest uppercase tracking-wide font-medium">
+        <a href="#" @click="$router.push('/')" :class="{'border-green': $route.name === 'Home'}" class="border-b-2 border-transparent p-4 pl-0 no-underline text-grey-darkest uppercase tracking-wide font-medium">
           Home
         </a>
         <a href="#" @click="$router.push('/members')" :class="{'border-green': $route.name === 'ClubMembers'}" class="border-b-2 border-transparent p-4 no-underline text-grey-darkest uppercase tracking-wide font-medium">
