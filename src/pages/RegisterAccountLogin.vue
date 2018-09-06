@@ -28,15 +28,18 @@
 
           <div class="mb-6">
             <label for="password" class="block mb-2 font-medium">Enter your password</label>      
-            <input v-model="account.password" id="password" name="password" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
+            <input v-model="account.password" id="password" name="password" type="password" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
           </div>
 
           <div class="mb-6">
             <label for="confirmPassword" class="block mb-2 font-medium">Confirm your password</label>      
-            <input v-model="confirmPassword" id="confirmPassword" name="confirmPassword" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
+            <input v-model="confirmPassword" id="confirmPassword" name="confirmPassword" type="password" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
           </div>
 
-          <button @click="registerAccountLogin" class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">Create my account</button>
+          <button @click="registerAccountLogin" :disabled="registrationInProgress" class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">
+            <span v-if="!registrationInProgress">Create my account</span>
+            <loading-spinner v-else color="white"/>
+          </button>
         </div>
 
       </div>
@@ -47,10 +50,14 @@
 <script>
 import axios from '@/libraries/axios'
 import { b64DecodeUnicode } from '@/libraries/utils'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default {
   mounted () {
     this.userId = b64DecodeUnicode(this.$route.query.ssid)
+  },
+  components: {
+    LoadingSpinner
   },
   data () {
     return {
@@ -64,7 +71,9 @@ export default {
       error: {
         show: false,
         text: ''
-      }
+      },
+
+      registrationInProgress: false
     }
   },
   methods: {
@@ -75,6 +84,8 @@ export default {
         this.error.text = 'Please enter matching passwords'
         return
       }
+
+      this.registrationInProgress = true
       axios.post(`/register-login/${this.userId}`, {
         ...this.account
       })
@@ -89,12 +100,14 @@ export default {
             return this.error.text =  'The verification link provided is invalid. Please go back to your inbox and follow the link that was sent to you.'
           }
           this.error.text = err.response.data.message
+          this.registrationInProgress = true
         })
     },
 
     clearError () {
       this.error.show = false
       this.error.text = ''
+      this.registrationInProgress = true
     }
   }
 }

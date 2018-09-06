@@ -66,7 +66,7 @@
         </div>
         <button @click="registerAccount()" :disabled="registrationInProgress" class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">
           <span v-if="!registrationInProgress">Create my account</span>
-          <span v-else>Creating ...</span>
+          <loading-spinner v-else color="white"/>
         </button>
 
       </div>
@@ -78,8 +78,12 @@
 <script>
 import axios from '@/libraries/axios'
 import { b64EncodeUnicode } from '../libraries/utils'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 export default {
+  components: {
+    LoadingSpinner
+  },
   data () {
     return {
       account: {
