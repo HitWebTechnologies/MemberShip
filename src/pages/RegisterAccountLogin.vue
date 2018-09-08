@@ -5,7 +5,7 @@
       <form class="form-area mx-auto lflex bg-white p-6 rounded" @submit.prevent="registerAccountLogin">
       
       
-      <h3 class="mb-6 pb-4 font-light text-2xl border-b">Signup the way you want</h3>
+      <h3 class="mb-6 pb-4 font-light text-2xl border-b">Create your Signup account</h3>
         <!-- social Signup
         comment it out. we dont need it yet.
         <div class="w-full flex items-center justify-between pb-4 border-b mb-6">
