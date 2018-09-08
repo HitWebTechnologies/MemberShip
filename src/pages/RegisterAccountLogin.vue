@@ -2,7 +2,7 @@
   <div class="border-t-4 border-green h-screen flex justify-center items-center">
     <div class="container mx-auto py-8">
       <AppAlertBox class="form-area mx-auto" :error="error" @clearError="clearError"/>
-      <form class="form-area mx-auto lflex bg-white p-6 rounded" @submit.prevent="registerAccount">
+      <form class="form-area mx-auto lflex bg-white p-6 rounded" @submit.prevent="registerAccountLogin">
       
       
       <h3 class="mb-6 pb-4 font-light text-2xl border-b">Signup the way you want</h3>
@@ -15,9 +15,9 @@
         
         manual Signup -->
         <div>
-          <div class="mb-6">
-            <label for="username" class="block mb-2 font-medium">Enter your username <span class="text-orange">*</span></label>      
-            <input v-model="account.username" id="username" required name="username" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="JohnDoe">
+          <div class="mb-6 pb-6 border-b">
+            <label for="username" class="block mb-2 font-medium">Your Reg Number Is</label>      
+            <input v-model="account.username" id="username" readonly required name="username" type="text" class="w-full bg-grey-lightest p-3 rounded border-2. border-grey-light" placeholder="JohnDoe">
           </div>
 
           <div class="mb-6">
@@ -49,7 +49,11 @@ import AppAlertBox from '@/components/AppAlertBox'
 
 export default {
   mounted () {
-    this.userId = b64DecodeUnicode(this.$route.query.ssid)
+    try {
+      this.userId = b64DecodeUnicode(this.$route.query.ssid)
+    } catch (error) {
+      console.log("Invalid url")
+    }
   },
   components: {
     LoadingSpinner,
@@ -58,7 +62,7 @@ export default {
   data () {
     return {
       account: {
-        username: '',
+        username: 'wew',
         password: ''
       },
       confirmPassword: '',
@@ -96,6 +100,9 @@ export default {
           console.log(err)
           this.error.show = true
           this.registrationInProgress = false
+          if (!err.response) {
+            return this.error.text = "You have been disconnected from the internet. Reconnect and try again"
+          }
           if (err.response.status == 400) {
             return this.error.text =  'The verification link provided is invalid. Please go back to your inbox and follow the link that was sent to you.'
           }
