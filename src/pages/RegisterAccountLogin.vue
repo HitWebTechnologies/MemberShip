@@ -1,15 +1,9 @@
 <template>
   <div class="border-t-4 border-green h-screen flex justify-center items-center">
     <div class="container mx-auto py-8">
-      <div class="form-area mx-auto lflex bg-white p-6 rounded">
+      <AppAlertBox class="form-area mx-auto" :error="error" @clearError="clearError"/>
+      <form class="form-area mx-auto lflex bg-white p-6 rounded" @submit.prevent="registerAccount">
       
-      <div class="bg-orange-lightest -mx-6 -mt-6 p-6 mb-4 flex items-center justify-between" v-if="error.show">
-        <div class="text-orange-dark">
-          <h3 class="mb-2 font-medium">Error</h3>
-          <span>{{ this.error.text }}</span>
-        </div>
-        <button @click="clearError" class="bg-white text-orange-dark h-10 w-10 rounded shadow">X</button>
-      </div>
       
       <h3 class="mb-6 pb-4 font-light text-2xl border-b">Signup the way you want</h3>
         <!-- social Signup
@@ -18,22 +12,22 @@
           <button class="block w-1/2-almost py-4 px-6 bg-white text-blue border-2 hover:bg-grey-lightest rounded">Signup with Google</button>
           <button class="block w-1/2-almost py-4 px-6 bg-blue text-white border-2 border-transparent hover:bg-blue-dark rounded">Signup with Facebook</button>
         </div>
-         -->
-        <!-- manual Signup -->
+        
+        manual Signup -->
         <div>
           <div class="mb-6">
-            <label for="username" class="block mb-2 font-medium">Enter your username</label>      
-            <input v-model="account.username" id="username" name="username" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="JohnDoe">
+            <label for="username" class="block mb-2 font-medium">Enter your username <span class="text-orange">*</span></label>      
+            <input v-model="account.username" id="username" required name="username" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="JohnDoe">
           </div>
 
           <div class="mb-6">
-            <label for="password" class="block mb-2 font-medium">Enter your password</label>      
-            <input v-model="account.password" id="password" name="password" type="password" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
+            <label for="password" class="block mb-2 font-medium">Enter your password <span class="text-orange">*</span></label>      
+            <input v-model="account.password" id="password" required name="password" type="password" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
           </div>
 
           <div class="mb-6">
-            <label for="confirmPassword" class="block mb-2 font-medium">Confirm your password</label>      
-            <input v-model="confirmPassword" id="confirmPassword" name="confirmPassword" type="password" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
+            <label for="confirmPassword" class="block mb-2 font-medium">Confirm your password <span class="text-orange">*</span></label>      
+            <input v-model="confirmPassword" id="confirmPassword" required name="confirmPassword" type="password" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="***">
           </div>
 
           <button @click="registerAccountLogin" :disabled="registrationInProgress" class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">
@@ -42,7 +36,7 @@
           </button>
         </div>
 
-      </div>
+      </form>
     </div>
   </div>
 </template>
@@ -51,13 +45,15 @@
 import axios from '@/libraries/axios'
 import { b64DecodeUnicode } from '@/libraries/utils'
 import LoadingSpinner from '@/components/LoadingSpinner'
+import AppAlertBox from '@/components/AppAlertBox'
 
 export default {
   mounted () {
     this.userId = b64DecodeUnicode(this.$route.query.ssid)
   },
   components: {
-    LoadingSpinner
+    LoadingSpinner,
+    AppAlertBox
   },
   data () {
     return {
@@ -78,6 +74,9 @@ export default {
   },
   methods: {
     registerAccountLogin () {
+      if (!this.account.username || !this.account.password || this.account.confirmPassword) {
+        return false
+      }
       if (this.account.password !== this.confirmPassword) {
         // throw an error and return
         this.error.show = true
@@ -96,23 +95,25 @@ export default {
         .catch(err => {
           console.log(err)
           this.error.show = true
+          this.registrationInProgress = false
           if (err.response.status == 400) {
             return this.error.text =  'The verification link provided is invalid. Please go back to your inbox and follow the link that was sent to you.'
           }
-          this.error.text = err.response.data.message
-          this.registrationInProgress = true
+          this.error.text = err.response.data.message || 'An unexpected error occured :/'
         })
     },
 
     clearError () {
       this.error.show = false
       this.error.text = ''
-      this.registrationInProgress = true
+      this.registrationInProgress = false
     }
   }
 }
 </script>
 
 <style>
-
+  .form-area {
+    max-width: 600px;
+  }
 </style>
