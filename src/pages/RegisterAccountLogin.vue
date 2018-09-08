@@ -1,6 +1,6 @@
 <template>
-  <div class="border-t-4 border-green h-screen flex justify-center items-center">
-    <div class="container mx-auto py-8">
+  <div class="border-t-4 border-green h-screen sm:flex sm:justify-center sm:items-center">
+    <div class="container mx-auto sm:py-8">
       <AppAlertBox class="form-area mx-auto" :error="error" @clearError="clearError"/>
       <form class="form-area mx-auto lflex bg-white p-6 rounded" @submit.prevent="registerAccountLogin">
       
