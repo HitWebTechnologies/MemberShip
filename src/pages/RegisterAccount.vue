@@ -2,20 +2,25 @@
   <div class="border-t-4 border-green h-screen flex justify-center items-center">
     <div class="container mx-auto py-8">
 
-      <div class="form-area mx-auto bg-white p-6 rounded ">
+      <AppAlertBox class="form-area mx-auto" :error="error" @clearError="clearError()"/>
+
+      <form class="form-area mx-auto bg-white p-6 rounded" @submit.prevent="registerAccount">
+
+
       <h3 class="mb-6 pb-4 font-light text-2xl border-b">Welcome to HIT Web Technologies</h3>
 
         <div class="flex mb-6">
           <!-- Full name -->
           <div class="w-3/5 mr-4">
-            <label for="name" class="block mb-2 font-medium">Enter your full name</label>      
-            <input v-model="account.fullName" id="name" name="name" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="John Doe">
+            <label for="name" class="block mb-2 font-medium">Enter your full name <span class="text-orange">*</span></label>      
+            <input v-model.trim="account.fullName" id="name" name="name" required type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="John Doe">
           </div>
 
           <!-- Reg number -->
           <div class="flex-1">
-            <label for="regNumber" class="block mb-2 font-medium">Enter Reg Number</label>
-            <input v-model="account.regNumber" id="regNumber" name="regNumber" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="H181234A">
+            <label for="regNumber" class="block mb-2 font-medium">Enter Reg Number <span class="text-orange">*</span></label>
+            <input v-model="account.regNumber" id="regNumber" required name="regNumber" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="H181234A">
+            <span class="text-orange" v-if="validationErrors.regNumber">Invalid RegNumber</span>
           </div>
         </div>
 
@@ -64,12 +69,12 @@
           <label for="twitter" class="block mb-2 font-medium">Twitter</label>
           <input v-model="account.twitterHandle" id="twitter" name="twitter" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="@kudapara">
         </div>
-        <button @click="registerAccount()" :disabled="registrationInProgress" class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">
+        <button :disabled="registrationInProgress" class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">
           <span v-if="!registrationInProgress">Create my account</span>
           <loading-spinner v-else color="white"/>
         </button>
 
-      </div>
+      </form>
 
     </div>
   </div>
@@ -79,11 +84,14 @@
 import axios from '@/libraries/axios'
 import { b64EncodeUnicode } from '../libraries/utils'
 import LoadingSpinner from '@/components/LoadingSpinner'
+import AppAlertBox from '@/components/AppAlertBox'
 
 export default {
   components: {
-    LoadingSpinner
+    LoadingSpinner,
+    AppAlertBox
   },
+
   data () {
     return {
       account: {
@@ -91,7 +99,7 @@ export default {
         regNumber: '',
         phoneNumber: '',
         emailAddress: '',
-        level: '',
+        level: '1',
         degreeProgram: 'ISE',
         twitterHandle: '',
       },
@@ -103,13 +111,29 @@ export default {
         { code: 'IIT', title: 'Information Technology'}
       ],
 
-      registrationInProgress: false
+      registrationInProgress: false,
+
+      error: {
+        show: false,
+        text: ''
+      },
+
+      validationErrors: {
+        regNumber: false
+      }
     }
   },
+
   methods: {
-    registerAccount () {
+    registerAccount (e) {
+      console.log(e)
       this.registrationInProgress = true
       this.account.emailAddress = this.account.regNumber + '@hit.ac.zw'
+      console.log('about to validate')
+      if (this.isFormValid() !== true) {
+        return this.registrationInProgress = false
+      }
+
       axios.post('/register', {
         ...this.account
       })
@@ -125,8 +149,43 @@ export default {
         })
         .catch(err => {
           console.log(JSON.stringify(err))
+          this.error.show = true
+          this.error.text = err.response.data.message || 'An unexpected error occured :/'
           this.registrationInProgress = false
         })
+    },
+
+    clearError () {
+      console.log("clearing the error")
+      this.error.show = false
+      this.error.text = ''
+      this.registrationInProgress = false
+    },
+
+    isRegNumberValid (regNumber) {
+      return regNumber.length === 8 &&
+        regNumber[0].toLocaleLowerCase() === 'h' &&
+        regNumber.substring(1,7).match(/[0-9]/) &&
+        regNumber[7].match(/[a-z]/i)
+    },
+
+    isFormValid () {
+      let member = this.account
+      // check if required fields are present
+      if (!member.fullName || !member.regNumber || !member.level || !member.degreeProgram) {
+        this.error.show = true
+        this.error.text = "Please fill in all required fields"
+
+        return false
+      }
+      
+      // check if the id is  - ask blessed for the regex for Ids
+      if (!this.isRegNumberValid(member.regNumber)) {
+        this.validationErrors.regNumber = true
+        return false
+      }
+      
+      return true
     }
   }
 }
