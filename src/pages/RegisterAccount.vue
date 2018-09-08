@@ -65,10 +65,20 @@
           </div>
         </div>
 
-        <div class="mb-6">
-          <label for="twitter" class="block mb-2 font-medium">Twitter</label>
-          <input v-model="account.twitterHandle" id="twitter" name="twitter" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="@kudapara">
+        <div class="flex flex-wrap mb-6 items-center">
+          <div class="w-full mb-4 sm:w-1/2 sm:mr-4 sm:mb-0">
+            <label for="year" class="block mb-2 font-medium">Enter Your Gender</label>
+            <select v-model="account.gender" id="year" name="year" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="flex-1">
+            <label for="twitter" class="block mb-2 font-medium">Twitter</label>
+            <input v-model="account.twitterHandle" id="twitter" name="twitter" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="@kudapara">
+          </div>
         </div>
+
         <button :disabled="registrationInProgress" class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">
           <span v-if="!registrationInProgress">Create my account</span>
           <loading-spinner v-else color="white"/>
@@ -100,6 +110,7 @@ export default {
         phoneNumber: '',
         emailAddress: '',
         level: '1',
+        gender: 'male',
         degreeProgram: 'ISE',
         twitterHandle: '',
       },
