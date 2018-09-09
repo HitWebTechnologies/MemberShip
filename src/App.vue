@@ -1,5 +1,8 @@
 <template>
   <div id="app" class="font-sans">
+    <div class="w-full flex items-center justify-center h-12 bg-orange text-white font-medium">
+      This is a beta version. Any account you create will be deleted in 3 hours.
+    </div>
     <router-view/>
   </div>
 </template>

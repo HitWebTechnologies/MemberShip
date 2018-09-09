@@ -16,7 +16,7 @@
 
           <a href="#" class="flex items-center p-4 no-underline hover:bg-grey-lighter rounded">
             <div class="w-6 h-6 rounded-full bg-green-light mr-2">&nbsp;</div>
-            <span>Kudakwashe</span>
+            <span>Logout</span>
           </a>
         </div>
       </div>
