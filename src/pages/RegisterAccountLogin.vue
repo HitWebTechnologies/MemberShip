@@ -4,7 +4,7 @@
       <AppAlertBox class="form-area mx-auto" :error="error" @clearError="clearError"/>
       <form class="form-area mx-auto lflex bg-white p-6 rounded" @submit.prevent="registerAccountLogin">
       
-      
+      {{ userId }}
       <h3 class="mb-6 pb-4 font-light text-2xl border-b">Create your Signup account</h3>
         <!-- social Signup
         comment it out. we dont need it yet.
@@ -16,8 +16,8 @@
         manual Signup -->
         <div>
           <div class="mb-6 pb-6 border-b">
-            <label for="username" class="block mb-2 font-medium">Your Reg Number Is</label>      
-            <input v-model="account.username" id="username" readonly required name="username" type="text" class="w-full bg-grey-lightest p-3 rounded border-2. border-grey-light" placeholder="JohnDoe">
+            <label for="username" class="block mb-2 font-medium">Your login email is</label>      
+            <input v-model="emailAddress" id="username" readonly required name="username" type="text" class="w-full bg-grey-lightest p-3 rounded border-2. border-grey-light" placeholder="JohnDoe">
           </div>
 
           <div class="mb-6">
@@ -43,16 +43,20 @@
 
 <script>
 import axios from '@/libraries/axios'
-import { b64DecodeUnicode } from '@/libraries/utils'
+import jwt from 'jsonwebtoken'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import AppAlertBox from '@/components/AppAlertBox'
 
 export default {
   mounted () {
     try {
-      this.userId = b64DecodeUnicode(this.$route.query.ssid)
+      const payload = jwt.decode(this.$route.query.verificationToken)
+      this.emailAddress = payload.emailAddress
+      this.userId = payload.id
     } catch (error) {
       console.log("Invalid url")
+      this.error.show = true
+      this.error.text = "Invalid validation link. Please return to your email and follow the verification link that was sent to you"
     }
   },
   components: {
@@ -62,11 +66,11 @@ export default {
   data () {
     return {
       account: {
-        username: 'wew',
         password: ''
       },
       confirmPassword: '',
       userId: '',
+      emailAddress: '',
 
       error: {
         show: false,
@@ -78,7 +82,7 @@ export default {
   },
   methods: {
     registerAccountLogin () {
-      if (!this.account.username || !this.account.password || this.account.confirmPassword) {
+      if (!this.account.password || this.account.confirmPassword) {
         return false
       }
       if (this.account.password !== this.confirmPassword) {
@@ -90,7 +94,8 @@ export default {
 
       this.registrationInProgress = true
       axios.post(`/register-login/${this.userId}`, {
-        ...this.account
+        ...this.account,
+        verificationToken: this.$route.query.verificationToken
       })
         .then(res => {
           console.log(res.data)
