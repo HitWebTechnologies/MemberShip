@@ -4,7 +4,7 @@
       <AppAlertBox class="form-area mx-auto" :error="error" @clearError="clearError"/>
       <form class="form-area mx-auto lflex bg-white p-6 rounded" @submit.prevent="registerAccountLogin">
       
-      {{ userId }}
+      
       <h3 class="mb-6 pb-4 font-light text-2xl border-b">Create your Signup account</h3>
         <!-- social Signup
         comment it out. we dont need it yet.
