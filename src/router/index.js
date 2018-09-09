@@ -4,10 +4,13 @@ import HelloWorld from '@/pages/HelloWorld'
 import RegisterAccount from '@/pages/RegisterAccount'
 import SuccessfullyRegistered from '@/pages/SuccessfullyRegistered'
 import RegisterAccountLogin from '@/pages/RegisterAccountLogin'
+import Login from '@/pages/Login'
 
 import Home from '@/pages/Home'
 import ClubMembers from '@/pages/ClubMembers'
 import Constitution from '@/pages/Constitution'
+
+import store from '@/store'
 
 Vue.use(Router)
 
@@ -18,6 +21,13 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld,
+      beforeEnter (to, from, next) {
+        if (store.getters.isUserAuthenticated) {
+          next()
+        } else {
+          next('/login')
+        }
+      },
       children: [
         {
           path: '',
@@ -51,6 +61,12 @@ export default new Router({
       path: '/register-login',
       name: 'RegisterAccountLogin',
       component: RegisterAccountLogin
-    }
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    
   ]
 })
