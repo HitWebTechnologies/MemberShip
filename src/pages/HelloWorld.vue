@@ -14,7 +14,7 @@
             Constitution
           </a>
 
-          <a href="#" class="flex items-center p-4 no-underline hover:bg-grey-lighter rounded">
+          <a href="#" @click="logout" class="flex items-center p-4 no-underline hover:bg-grey-lighter rounded">
             <div class="w-6 h-6 rounded-full bg-green-light mr-2">&nbsp;</div>
             <span>Logout</span>
           </a>
@@ -41,7 +41,12 @@
 
 <script>
 export default {
-
+  methods: {
+    logout () {
+      this.$store.commit('logout')
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
 
