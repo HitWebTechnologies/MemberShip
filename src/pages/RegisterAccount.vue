@@ -149,7 +149,7 @@ export default {
       })
         .then(res => {
           console.log(res.data)
-          this.$router.push('/success')
+          this.$router.push(`/success?emailAddress=${this.account.emailAddress}`)
         })
         .catch(err => {
           console.log(JSON.stringify(err))

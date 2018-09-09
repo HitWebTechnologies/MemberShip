@@ -4,7 +4,7 @@
       <h3 class="mb-6 pb-4 font-light text-2xl border-b">Congratulations!</h3>
       <p>Well done. You have successfully submited your personal details.</p>
       <p>Now whats left is for you to verify your account and add login details.</p>
-      <p >A verification link has been sent to <strong>h170167f@hit.ac.zw</strong>. Click on it and you will be a verified member of the club </p>
+      <p >A verification link has been sent to <strong>{{ $route.query.emailAddress }}</strong>. Click on it and you will be a verified member of the club </p>
 
 
       <div class="bg-green-lightest border border-green rounded p-4 mt-6">
