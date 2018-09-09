@@ -11,7 +11,7 @@
         <h5 class="mb-2">Just in case you did not now</h5>
         <p>The school created Gmail accounts for all of you which you can log into using your regnumbers in this format [regnumber]@hit.ac.zw.</p>
         <p>So head over to <a href="https://gmail.com">gmail.com</a> and login to access your verification link.</p>
-        <p>If you are still not sure about what to do you can <a href="https://twitter.com/HitWebTech">send us a tweet</a> or <router-link to="/contact">contact us</router-link></p>
+        <p>If you are still not sure about what to do you can <a target="_blank" href="https://twitter.com/intent/tweet?text=Hey%20@HitWebTech">send us a tweet</a> or contact us on <a target="_blank" href="https://wa.me/2263785274391">0785274391</a></p>
       </div>
       <div class="flex flex-wrap items-center justify-between mt-6">
         <a href="https://twitter.com/HitWebTech" class="w-full sm:w-auto no-underline bg-green hover:bg-green-dark rounded text-white text-center px-6 py-4">Follow @HitWebTech</a>
