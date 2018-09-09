@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-orange-lightest p-6 mb-4 flex items-center justify-between border-l-4 border-orange-dark" v-if="error.show">
+  <div class="bg-orange-lightest p-6 mb-4 flex items-center justify-between border-b-4 border-orange-dark" v-if="error.show">
     <div class="text-orange-dark">
       <h3 class="mb-2 font-medium">Error</h3>
       <span>{{ this.error.text }}</span>

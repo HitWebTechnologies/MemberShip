@@ -1,6 +1,6 @@
 <template>
-  <div class="border-t-4 border-green h-screen flex justify-center items-center">
-    <div class="container mx-auto py-8">
+  <div class="border-t-4 border-green h-screen sm:flex sm:justify-center sm:items-center">
+    <div class="container mx-auto sm:py-8">
 
       <AppAlertBox class="form-area mx-auto" :error="error" @clearError="clearError()"/>
 
@@ -9,9 +9,9 @@
 
       <h3 class="mb-6 pb-4 font-light text-2xl border-b">Welcome to HIT Web Technologies</h3>
 
-        <div class="flex mb-6">
+        <div class="flex flex-wrap mb-6">
           <!-- Full name -->
-          <div class="w-3/5 mr-4">
+          <div class="w-full mb-4 sm:w-3/5 sm:mb-0 sm:mr-4">
             <label for="name" class="block mb-2 font-medium">Enter your full name <span class="text-orange">*</span></label>      
             <input v-model.trim="account.fullName" id="name" name="name" required type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="John Doe">
           </div>
@@ -24,16 +24,11 @@
           </div>
         </div>
 
-        <div class="flex mb-6">
-          <!-- Reg number -->
-          <div class="flex-1 mr-4">
-            <label for="phoneNumber" class="block mb-2 font-medium">Enter Phone Number</label>
-            <input v-model="account.phoneNumber" id="phoneNumber" name="phoneNumber" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="0717123456">
-          </div>
+        <div class="flex flex-wrap mb-6">
 
           <!-- email -->
-          <div class="flex-1">
-            <label for="email" class="block mb-2 font-medium">Enter Email Address</label>
+          <div class="w-full mb-4 sm:w-1/2 sm:mr-4 sm:mb-0">
+            <label for="email" class="block mb-2 font-medium">Your Email Address Is</label>
             <div class="flex">
               <input v-model="account.regNumber" id="email" name="email" type="email" class="w-full bg-grey-lightest p-3 rounded-l border-2 border-r-0 border-grey-light" placeholder="" readonly>
               <div class="p-3 bg-grey-light border-2 border-l-0 rounded-r">
@@ -41,11 +36,16 @@
               </div>
             </div>
           </div>
+          <!-- Reg number -->
+          <div class="flex-1">
+            <label for="phoneNumber" class="block mb-2 font-medium">Enter Phone Number</label>
+            <input v-model="account.phoneNumber" id="phoneNumber" name="phoneNumber" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="0717123456">
+          </div>
         </div>
 
-        <div class="flex mb-6">
+        <div class="flex flex-wrap mb-6">
           <!-- Year -->
-          <div class="flex-1 mr-4">
+          <div class="w-full mb-4 sm:w-1/2 sm:mr-4 sm:mb-0">
             <label for="year" class="block mb-2 font-medium">Enter Year</label>
             <select v-model="account.level" id="year" name="year" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="H181234A">
               <option value="1">1</option>
@@ -65,10 +65,20 @@
           </div>
         </div>
 
-        <div class="mb-6">
-          <label for="twitter" class="block mb-2 font-medium">Twitter</label>
-          <input v-model="account.twitterHandle" id="twitter" name="twitter" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="@kudapara">
+        <div class="flex flex-wrap mb-6 items-center">
+          <div class="w-full mb-4 sm:w-1/2 sm:mr-4 sm:mb-0">
+            <label for="year" class="block mb-2 font-medium">Enter Your Gender</label>
+            <select v-model="account.gender" id="year" name="year" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="flex-1">
+            <label for="twitter" class="block mb-2 font-medium">Twitter</label>
+            <input v-model="account.twitterHandle" id="twitter" name="twitter" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="@kudapara">
+          </div>
         </div>
+
         <button :disabled="registrationInProgress" class="block w-full py-4 px-6 bg-green text-white hover:bg-green-dark rounded">
           <span v-if="!registrationInProgress">Create my account</span>
           <loading-spinner v-else color="white"/>
@@ -82,7 +92,6 @@
 
 <script>
 import axios from '@/libraries/axios'
-import { b64EncodeUnicode } from '../libraries/utils'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import AppAlertBox from '@/components/AppAlertBox'
 
@@ -100,6 +109,7 @@ export default {
         phoneNumber: '',
         emailAddress: '',
         level: '1',
+        gender: 'male',
         degreeProgram: 'ISE',
         twitterHandle: '',
       },
@@ -140,12 +150,7 @@ export default {
         .then(res => {
           console.log(res.data)
           let userId = b64EncodeUnicode(res.data.user._id)
-          this.$router.push({
-            path: '/register-login',
-            query: {
-              ssid: userId
-            }
-          })
+          this.$router.push('/success')
         })
         .catch(err => {
           console.log(JSON.stringify(err))

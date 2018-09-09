@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/pages/HelloWorld'
 import RegisterAccount from '@/pages/RegisterAccount'
+import SuccessfullyRegistered from '@/pages/SuccessfullyRegistered'
 import RegisterAccountLogin from '@/pages/RegisterAccountLogin'
 
 import Home from '@/pages/Home'
@@ -40,6 +41,12 @@ export default new Router({
       name: 'RegisterAccount',
       component: RegisterAccount
     },
+    {
+      path: '/success',
+      name: 'SuccessfullyRegistered',
+      component: SuccessfullyRegistered
+    },
+    
     {
       path: '/register-login',
       name: 'RegisterAccountLogin',

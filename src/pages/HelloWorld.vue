@@ -23,7 +23,7 @@
     </div>
 
     <!-- A secondary nav bar -->
-    <div class="bg-white- bg-grey-lightest border-b">
+    <div class="bg-white border-b shadow">
       <div class="flex container mx-auto">
         <a href="#" @click="$router.push('/')" :class="{'border-green': $route.name === 'Home'}" class="border-b-2 border-transparent p-4 pl-0 no-underline text-grey-darkest uppercase tracking-wide font-medium">
           Home

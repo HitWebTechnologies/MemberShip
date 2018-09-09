@@ -17,4 +17,11 @@ export default {
  @tailwind components;
  @tailwind utilities;
 
+ body {
+   line-height: 1.4rem
+ }
+
+ p {
+   @apply .mb-2
+ }
 </style>
