@@ -29,7 +29,12 @@
           </button>
         </div>
 
+
       </form>
+
+      <div class="form-area mx-auto bg-white border-2 mt-4 rounded p-6">
+        New to HitWebTech? <button class="text-green" @click="$router.push('/register')">Create your account now</button>
+      </div>
     </div>
   </div>
 </template>
