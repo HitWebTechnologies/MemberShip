@@ -149,7 +149,6 @@ export default {
       })
         .then(res => {
           console.log(res.data)
-          let userId = b64EncodeUnicode(res.data.user._id)
           this.$router.push('/success')
         })
         .catch(err => {
