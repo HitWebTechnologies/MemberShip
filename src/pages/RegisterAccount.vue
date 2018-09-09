@@ -151,12 +151,13 @@ export default {
         .then(res => {
           console.log(res.data)
           let userId = b64EncodeUnicode(res.data.user._id)
-          this.$router.push({
-            path: '/register-login',
-            query: {
-              ssid: userId
-            }
-          })
+          this.$router.push('/success')
+          // this.$router.push({
+          //   path: '/register-login',
+          //   query: {
+          //     ssid: userId
+          //   }
+          // })
         })
         .catch(err => {
           console.log(JSON.stringify(err))
