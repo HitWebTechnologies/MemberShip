@@ -92,7 +92,6 @@
 
 <script>
 import axios from '@/libraries/axios'
-import { b64EncodeUnicode } from '../libraries/utils'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import AppAlertBox from '@/components/AppAlertBox'
 
@@ -152,12 +151,6 @@ export default {
           console.log(res.data)
           let userId = b64EncodeUnicode(res.data.user._id)
           this.$router.push('/success')
-          // this.$router.push({
-          //   path: '/register-login',
-          //   query: {
-          //     ssid: userId
-          //   }
-          // })
         })
         .catch(err => {
           console.log(JSON.stringify(err))
