@@ -4,7 +4,7 @@
       <h3 class="mb-2 font-medium">Error</h3>
       <span>{{ this.error.text }}</span>
     </div>
-    <button @click="$emit('clearError')" class="bg-white text-orange-dark h-10 w-10 rounded shadow">X</button>
+    <button @click="$emit('clearError')" class="flex-no-shrink ml-4 bg-white text-orange-dark h-10 w-10 rounded shadow">X</button>
   </div>
 </template>
 
