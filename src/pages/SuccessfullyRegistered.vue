@@ -8,7 +8,7 @@
 
 
       <div class="bg-green-lightest border border-green rounded p-4 mt-6">
-        <h5 class="mb-2">Just in case you did not now</h5>
+        <h5 class="mb-2">Just in case you did not know</h5>
         <p>The school created Gmail accounts for all of you which you can log into using your regnumbers in this format [regnumber]@hit.ac.zw.</p>
         <p>So head over to <a href="https://gmail.com">gmail.com</a> and login to access your verification link.</p>
         <p>If you are still not sure about what to do you can <a target="_blank" href="https://twitter.com/intent/tweet?text=Hey%20@HitWebTech">send us a tweet</a> or contact us on <a target="_blank" href="https://wa.me/2263785274391">0785274391</a></p>
