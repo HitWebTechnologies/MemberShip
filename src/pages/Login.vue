@@ -11,10 +11,7 @@
           <div class="mb-6 pb-6 border-b">
             <label for="username" class="block mb-2 font-medium">Enter your Reg Number</label>      
             <div class="flex w-full">
-              <input v-model="account.regNumber" id="regNumber" required name="regNumber" type="text" class="w-full p-3 rounded-l border-2 border-r-0 border-grey-light" placeholder="">
-              <div class="p-3 bg-grey-light border-2 border-l-0 rounded-r">
-                @hit.ac.zw
-              </div>
+              <input v-model="account.regNumber" id="regNumber" required name="regNumber" type="text" class="w-full p-3 rounded border-2 border-grey-light" placeholder="">
             </div>
           </div>
 
