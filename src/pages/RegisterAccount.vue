@@ -28,9 +28,9 @@
 
           <!-- email -->
           <div class="w-full mb-4 sm:w-1/2 sm:mr-4 sm:mb-0">
-            <label for="email" class="block mb-2 font-medium">Your Email Address Is</label>
+            <label for="email" class="block mb-2 font-medium">Enter your email address</label>
             <div class="flex">
-              <input v-model="account.emailAddress" id="email" name="email" type="email" class="w-full bg-grey-lightest p-3 rounded-l border-2 border-r-0 border-grey-light" placeholder="" readonly>
+              <input v-model="account.emailAddress" id="email" name="email" type="email" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="">
             </div>
           </div>
           <!-- Reg number -->
