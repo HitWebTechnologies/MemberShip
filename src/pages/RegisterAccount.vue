@@ -13,13 +13,13 @@
           <!-- Full name -->
           <div class="w-full mb-4 sm:w-3/5 sm:mb-0 sm:mr-4">
             <label for="name" class="block mb-2 font-medium">Enter your full name <span class="text-orange">*</span></label>      
-            <input v-model.trim="account.fullName" id="name" name="name" required type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="John Doe">
+            <input v-model.trim="account.fullName" id="name" name="name" required type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="">
           </div>
 
           <!-- Reg number -->
           <div class="flex-1">
             <label for="regNumber" class="block mb-2 font-medium">Enter Reg Number <span class="text-orange">*</span></label>
-            <input v-model="account.regNumber" id="regNumber" required name="regNumber" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="H181234A">
+            <input v-model="account.regNumber" id="regNumber" required name="regNumber" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="">
             <span class="text-orange" v-if="validationErrors.regNumber">Invalid RegNumber</span>
           </div>
         </div>
@@ -36,7 +36,7 @@
           <!-- Reg number -->
           <div class="flex-1">
             <label for="phoneNumber" class="block mb-2 font-medium">Enter Phone Number</label>
-            <input v-model="account.phoneNumber" id="phoneNumber" name="phoneNumber" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="0717123456">
+            <input v-model="account.phoneNumber" id="phoneNumber" name="phoneNumber" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="">
           </div>
         </div>
 
@@ -44,7 +44,7 @@
           <!-- Year -->
           <div class="w-full mb-4 sm:w-1/2 sm:mr-4 sm:mb-0">
             <label for="year" class="block mb-2 font-medium">Enter Year</label>
-            <select v-model="account.level" id="year" name="year" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="H181234A">
+            <select v-model="account.level" id="year" name="year" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -54,7 +54,7 @@
 
           <div class="flex-1">
             <label for="year" class="block mb-2 font-medium">What program?</label>
-            <select v-model="account.degreeProgram" id="year" name="year" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="H181234A">
+            <select v-model="account.degreeProgram" id="year" name="year" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="">
               <option v-for="program in degreePrograms" :value="program.code" :key="program.code">
                 {{ program.title }}
               </option>
@@ -71,7 +71,7 @@
             </select>
           </div>
           <div class="flex-1">
-            <label for="twitter" class="block mb-2 font-medium">Twitter</label>
+            <label for="twitter" class="block mb-2 font-medium">Twitter (optional)</label>
             <input v-model="account.twitterHandle" id="twitter" name="twitter" type="text" class="w-full bg-white p-3 rounded border-2 border-grey-light" placeholder="@kudapara">
           </div>
         </div>
