@@ -30,10 +30,7 @@
           <div class="w-full mb-4 sm:w-1/2 sm:mr-4 sm:mb-0">
             <label for="email" class="block mb-2 font-medium">Your Email Address Is</label>
             <div class="flex">
-              <input v-model="account.regNumber" id="email" name="email" type="email" class="w-full bg-grey-lightest p-3 rounded-l border-2 border-r-0 border-grey-light" placeholder="" readonly>
-              <div class="p-3 bg-grey-light border-2 border-l-0 rounded-r">
-                @hit.ac.zw
-              </div>
+              <input v-model="account.emailAddress" id="email" name="email" type="email" class="w-full bg-grey-lightest p-3 rounded-l border-2 border-r-0 border-grey-light" placeholder="" readonly>
             </div>
           </div>
           <!-- Reg number -->
@@ -138,8 +135,6 @@ export default {
     registerAccount (e) {
       console.log(e)
       this.registrationInProgress = true
-      this.account.emailAddress = this.account.regNumber + '@hit.ac.zw'
-      console.log('about to validate')
       if (this.isFormValid() !== true) {
         return this.registrationInProgress = false
       }
