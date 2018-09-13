@@ -115,7 +115,15 @@ export default {
         { code: 'ISE', title: 'Software Engineering' },
         { code: 'ICS', title: 'Computer Science' },
         { code: 'ISA', title: 'Information Security And Assuarance' },
-        { code: 'IIT', title: 'Information Technology'}
+        { code: 'IIT', title: 'Information Technology' },
+        { code: 'ICE', title: 'Electronic Commerce' },
+        { code: 'EEE', title: 'Electronics' },
+        { code: 'IIT', title: 'Biotechnology' },
+        { code: 'FPT', title: 'Food Processing Technology' },
+        { code: 'IFE', title: 'Financial Engineering' },
+        { code: 'FAA', title: 'Forensic Accounting and Auditing' },
+        { code: 'IME', title: 'Industial Manufacturing Engineering' },
+        { code: 'POL', title: 'Polymer' }
       ],
 
       registrationInProgress: false,
