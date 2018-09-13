@@ -26,7 +26,7 @@
             </td>
             <td class="px-4 py-3 border-b border-grey-lighter text-left">
               <div class="flex flex-col">
-                <span class="font-medium ">{{ member.degreeProgram }}</span>
+                <span class="font-medium ">{{ degreePrograms.find(m => m.code === member.degreeProgram).title }}</span>
                 <span class="text-grey-dark">{{ member.level }}</span>
               </div>
             </td>
@@ -43,6 +43,8 @@
 <script>
 import axios from '@/libraries/axios'
 import LoadingSpinner from '@/components/LoadingSpinner'
+import degreePrograms from '@/data/degree-programs'
+
 export default {
   mounted () {
     axios.get('/members')
@@ -60,6 +62,7 @@ export default {
   data () {
     return {
       members: [],
+      degreePrograms,
       error: {
         show: false,
         title: ''
